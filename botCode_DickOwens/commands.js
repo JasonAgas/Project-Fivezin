@@ -5,6 +5,20 @@
 
 // Note: general format is message.guild.property --> look up documentation for specifics 
 
+/* Command directory */ 
+// Purpose: Lists all the commands that the bot can perform at the moment. 
+client.on('message', message => {
+    if (message.content === (`${prefix}commands`)) {
+        message.channel.send(`The current commands I can respond to are:\n
+        !dick --> You'll see :) \n
+        !clothes --> I will tell you how much I love clothes.
+        !server --> I will tell you the server name and number of members. \n
+        !serverDate --> I will tell you the date that the server was created. \n
+        !region --> I will tell you the region that this server is based in.\n
+        That is all. Stay tuned in for more commands! :)`)
+     }
+    });
+
 /* Dick Command */
 // Purpose: Bot will respond to dick.
 client.on('message', message => { 
