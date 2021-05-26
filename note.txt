@@ -1,3 +1,6 @@
 - Rick Owens Clothes library with the bot retrieving them to show 
 - Piss room command where a !piss command puts the person in a designated channel and mutes them
 - !kickNathan --> Specifically kicks nathan from the server 
+
+Changelog: 
+- May 25th: Added '!commands', which discloses all the commands that the bot can perform. 
