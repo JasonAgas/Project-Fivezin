@@ -19,7 +19,10 @@ client.login(token);
 
 /* Message Commands */
 client.on('message', message => {
-    if (message.content === (`${prefix}commands`)) {
+    if (!message.content.startsWith(`${prefix}`) || message.author.bot) {
+        return;
+    }
+    else if (message.content === (`${prefix}commands`)) {
         message.channel.send(`The current commands I can respond to are:\n
         !dick --> You'll see :) \n
         !clothes --> I will tell you how much I love clothes.
@@ -40,4 +43,21 @@ client.on('message', message => {
     else if (message.content === `${prefix}region`) {
         message.channel.send(`This server is based in: ${message.guild.region}` )
     }
-});
+    else if (message.content === `${prefix}prune`) {
+        const amount = parseInt(args[0]); 
+        if (isNaN(amount)) {  
+             return message.reply("Bro, that doesn't seem to be be a valid number")
+         }
+         else if (amount < 2 || amount > 50) {
+             return message.reply("My guy, you need to input a number between 2 and 50 inclusive")
+         }
+         else {
+             message.channel.bulkDelete(amount);
+        }
+    }
+    else {
+        return;
+    }
+    });
+
+
