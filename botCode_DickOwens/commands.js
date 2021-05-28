@@ -6,7 +6,7 @@
 // Note: general format is message.guild.property --> look up documentation for specifics 
 
 /* VARIABLES */ 
-const args = message.content.slice(prefix.length).trim().split(' ');
+const args = message.content.slice(prefix.length).trim().split(/ +/);
 // "slices off the prefix entirely, removes the leftover whitespaces, and then splits it into an array by spaces."
 /* Example: !args-info here are my arguments
  * Returns: Command name: args-info 
