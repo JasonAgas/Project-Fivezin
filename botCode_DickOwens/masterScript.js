@@ -19,6 +19,8 @@ client.login(token);
 
 /* Message Commands */
 client.on('message', message => {
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
     if (!message.content.startsWith(`${prefix}`) || message.author.bot) {
         return;
     }
@@ -44,7 +46,7 @@ client.on('message', message => {
         message.channel.send(`This server is based in: ${message.guild.region}` )
     }
     else if (message.content === `${prefix}prune`) {
-        const amount = parseInt(args[0]); 
+        const amount = parseInt(args[0]+1); 
         if (isNaN(amount)) {  
              return message.reply("Bro, that doesn't seem to be be a valid number")
          }

@@ -17,3 +17,4 @@ Changelog:
 - May 25th: Added '!commands', which discloses all the commands that the bot can perform.
 - May 26th:  Argument variables added.
 - May 27th: Added '!prune', which deletes 2-50 messages within a channel. 
+- May 29th: Added '!kick', which kicks user from the server. '!restart' currently in progress. 
