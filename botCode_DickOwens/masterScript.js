@@ -77,8 +77,7 @@ client.on('message', message => {
             else {
                 message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
             }
-        
-        }
+    }
     else if (command === 'ban') {
         const {member, mentions} = message; 
         if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
