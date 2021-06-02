@@ -114,7 +114,7 @@ client.on('message', message => {
                 const target = mentions.users.first();
                 const taggedUser = message.mentions.users.first();
                 const taggedMember = message.guild.members.cache.get(target.id);
-                taggedMember.kick();
+                taggedMember.kick(); // Options can be attached for the kick --> # of days and reason. 
                 message.channel.send(`<@${member.id}>, The following user was kicked: ${taggedUser.username}`);
     
             }
@@ -123,6 +123,31 @@ client.on('message', message => {
             message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
         }
     
+    }
+});
+
+/* Ban Command */
+// Purpose: Bans people. Again, mostly to be used on Nathan! 
+// Note: This takes an argument: 
+
+client.on('message',message => {
+    if (command === 'ban') {
+        const {member, mentions} = message; 
+        if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
+            if(!message.mentions.users.size) {
+                return message.reply (` I can't unleash the ban hammer if you don't give me a name!`); 
+            }
+            else {
+            const target = mentions.users.first();
+            const taggedUser = message.mentions.user.first();
+            const taggedMember = message.guild.members.cache.get(target.id);
+            taggedMember.ban() // Options can be attached for the kick --> # of days and reason. 
+            message.channel.send(`<@${member.id}>, The following user was banned: ${taggedUser.username}`)
+            }
+        }
+        else {
+            message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
+        }
     }
 });
 

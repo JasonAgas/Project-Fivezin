@@ -8,6 +8,8 @@
 const Discord = require('discord.js'); 
 const client = new Discord.Client(); 
 const {prefix, token} = require('./config.json'); 
+const args = message.content.slice(prefix.length).trim().split(/ +/);
+const command = args.shift().toLowerCase();
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -57,6 +59,44 @@ client.on('message', message => {
              message.channel.bulkDelete(amount);
         }
     }
+    else if (command === 'kick') { 
+            const {member, mentions} = message;
+            if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('KICK_MEMBERS')) {
+                if (!message.mentions.users.size) {
+                    return message.reply(` I can't kick someone if you don't tell me their name!`)
+                }
+                else {
+                    const target = mentions.users.first();
+                    const taggedUser = message.mentions.users.first();
+                    const taggedMember = message.guild.members.cache.get(target.id);
+                    taggedMember.kick(); 
+                    message.channel.send(`<@${member.id}>, The following user was kicked: ${taggedUser.username}`);
+        
+                }
+            }
+            else {
+                message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
+            }
+        
+        }
+    else if (command === 'ban') {
+        const {member, mentions} = message; 
+        if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
+            if(!message.mentions.users.size) {
+                 return message.reply (` I can't unleash the ban hammer if you don't give me a name!`); 
+            }
+            else {
+                const target = mentions.users.first();
+                const taggedUser = message.mentions.user.first();
+                const taggedMember = message.guild.members.cache.get(target.id);
+                taggedMember.ban()
+                message.channel.send(`<@${member.id}>, The following user was banned: ${taggedUser.username}`)
+                }
+            }
+        else {
+                message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
+            }
+        }
     else {
         return;
     }

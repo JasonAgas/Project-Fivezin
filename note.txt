@@ -1,3 +1,4 @@
+Things to add: 
 - Rick Owens Clothes library with the bot retrieving them to show 
 - Piss room command where a !piss command puts the person in a designated channel and mutes them
 - !kickNathan --> Specifically kicks nathan from the server 
@@ -18,3 +19,4 @@ Changelog:
 - May 26th:  Argument variables added.
 - May 27th: Added '!prune', which deletes 2-50 messages within a channel. 
 - May 29th: Added '!kick', which kicks user from the server. '!restart' currently in progress. 
+- June 1st: Added '!ban', which bans the user from the server. Note: Better organization is needed in master script.
