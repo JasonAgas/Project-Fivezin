@@ -7,16 +7,19 @@ General Format for individual commands:
 
 module.exports = {
     name: 
-    desriptionn
+    desription: 
     args:
 
     execute(message,args) 
     }
 }
 
-Changelog: 
+CHANGELOG: 
 - May 25th: Added '!commands', which discloses all the commands that the bot can perform.
 - May 26th:  Argument variables added.
 - May 27th: Added '!prune', which deletes 2-50 messages within a channel. 
 - May 29th: Added '!kick', which kicks user from the server. '!restart' currently in progress. 
 - June 1st: Added '!ban', which bans the user from the server. Note: Better organization is needed in master script.
+- June 2nd: Officially implemented command handling - commands are now read from seperate files, rather than one script. Rest of the commands to be added at a later date. 
+            Some files and their folders were reconfigured or deleted in order to facilitate reading from different files. 
+- June 3rd: Rest of the current commands implemented into seperate files. 
