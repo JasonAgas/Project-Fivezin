@@ -3,8 +3,6 @@
  * Purpose: Initialization/Setup Code for a Discord Bot 
  */
 
-/*START-UP CODE STARTS HERE */
-
 const Discord = require('discord.js'); 
 const client = new Discord.Client(); 
 const {prefix, token} = require('./config.json'); 
@@ -42,5 +40,3 @@ client.on('message', message => {
         message.reply('there was an error trying to execute that command!');
     }
 });
-
-/* START-UP CODE ENDS HERE */
