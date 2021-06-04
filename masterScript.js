@@ -3,19 +3,37 @@
  * Purpose: Holds entire script for the bot. 
  */
 
-/* INITIALIZATION */
+client.botCommands = new Discord.Collection();
 
 const Discord = require('discord.js'); 
 const client = new Discord.Client(); 
 const {prefix, token} = require('./config.json'); 
 const args = message.content.slice(prefix.length).trim().split(/ +/);
 const command = args.shift().toLowerCase();
+const fs = require('fs');
+const commandFiles = fs.readdirSync('./botCommands').filter(file => file.endsWith('.js'));
+
 
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
 client.login(token);
+
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.botCommands.set(command.name,command);
+}
+
+if (!client.botCommands.has(command)) return;
+
+try {
+    client.botCommands.get(command).execute(message,args);
+}
+catch (error) {
+    console.error(error);
+    message.reply('there was an error trying to execute that command!');
+}
 
 /* COMMANDS */
 
@@ -77,7 +95,7 @@ client.on('message', message => {
             else {
                 message.channel.send(`<@${member.id}>, You do not have the necessary permissions to use this command!`);
             }
-    }
+        }
     else if (command === 'ban') {
         const {member, mentions} = message; 
         if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
